@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SL Transit Reliability — Stockholm</title>
+<style>
+  :root{
+    --bg:#0f1012; --surface:#17181b; --surface2:#1e2024; --border:#2a2c31;
+    --text:#f2f2f0; --text2:#a8a9a4; --text3:#74756f;
+    --accent:#3987e5; --warn:#d95926; --danger:#a32d2d; --ok:#199e70;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.65;
+    -webkit-font-smoothing:antialiased;padding:0 20px}
+  .wrap{max-width:920px;margin:0 auto;padding:56px 0 80px}
+  .eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:14px}
+  h1{font-size:34px;font-weight:600;letter-spacing:-.02em;margin-bottom:10px}
+  .sub{font-size:16px;color:var(--text2);margin-bottom:40px}
+  .lede{background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:26px 28px;margin-bottom:44px}
+  .lede .tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--ok);background:rgba(25,158,112,.12);
+    padding:5px 11px;border-radius:6px;margin-bottom:14px}
+  .lede p{font-size:17px;color:var(--text);line-height:1.7}
+  .lede p+p{margin-top:12px;color:var(--text2);font-size:15px}
+  h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);
+    margin:0 0 20px;font-weight:600}
+  section{margin-bottom:52px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:8px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+  .card .k{font-size:13px;color:var(--text2);margin-bottom:8px}
+  .card .v{font-size:28px;font-weight:600;letter-spacing:-.01em}
+  .card .v.acc{color:var(--accent)}
+  .charthead{font-size:19px;font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
+  .chartsub{font-size:14px;color:var(--text2);margin-bottom:22px}
+  .chartbox{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px}
+  .canvaswrap{position:relative;width:100%}
+  .pipe{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .stage{flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:18px 16px;text-align:center;position:relative}
+  .stage .n{font-size:22px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+  .stage .l{font-size:12px;color:var(--text2);line-height:1.4}
+  .arrow{display:flex;align-items:center;color:var(--text3);font-size:20px;padding:0 4px}
+  .method{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px 28px}
+  .method h3{font-size:16px;font-weight:600;margin-bottom:12px}
+  .method p{font-size:14px;color:var(--text2);line-height:1.75}
+  .method .row{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--border);font-size:14px}
+  .method .row:first-of-type{border-top:none;margin-top:8px}
+  .method .row .lab{color:var(--text3);min-width:150px}
+  .method .row .val{color:var(--text2)}
+  footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);
+    font-size:13px;color:var(--text3)}
+  @media(max-width:560px){h1{font-size:27px}.pipe{flex-direction:column}.arrow{transform:rotate(90deg);justify-content:center;padding:6px 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Stockholm public transit · SL</div>
+  <h1>Punctuality &amp; delay analysis</h1>
+  <div class="sub">34 snapshot days · 6.97M trip-stop observations · January 2023 – July 2026</div>
+
+  <div class="lede">
+    <span class="tag">Expected chaos, found reliability</span>
+    <p>We built this expecting to find a transit system under strain — chronic delays, bad lines, a daily rush-hour breakdown. The data showed the opposite. SL runs on time. Across every mode, fewer than 1% of trips arrive more than 10 minutes late, and on the metro it is effectively zero.</p>
+    <p>The failures that do exist aren't systemic. They cluster on specific dates and specific hours — a few hours on a handful of days — tied to planned engineering work or one-off incidents, not to any weakness you could optimize away. At 99.5%+ punctuality, there is no structural problem to fix. This dashboard shows what the data actually says.</p>
+  </div>
+
+  <section>
+    <h2>At a glance</h2>
+    <div class="cards">
+      <div class="card"><div class="k">Observations</div><div class="v">6.97M</div></div>
+      <div class="card"><div class="k">Metro fail rate</div><div class="v acc">0.004%</div></div>
+      <div class="card"><div class="k">Pendeltåg fail rate</div><div class="v">0.65%</div></div>
+      <div class="card"><div class="k">Worst single delay</div><div class="v">190 min</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="charthead">Failure rate by transport mode</div>
+    <div class="chartsub">Share of trips arriving more than 10 minutes late</div>
+    <div class="chartbox">
+      <div class="canvaswrap" style="height:280px">
+        <canvas id="modeChart" role="img" aria-label="Failure rate by mode: metro 0.004%, light rail 0.15%, bus 0.42%, pendeltag 0.65%, ferry 0.91%">Metro 0.004%, light rail 0.15%, bus 0.42%, pendeltåg 0.65%, ferry 0.91%.</canvas>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="charthead">Least reliable lines</div>
+    <div class="chartsub">Highest failure rate among lines with at least 1,000 trips — all are buses</div>
+    <div class="chartbox">
+      <div class="canvaswrap" style="height:380px">
+        <canvas id="lineChart" role="img" aria-label="Least reliable bus lines by failure rate, line 955 highest at 7.5 percent">Lines 955 (7.5%), 908 (7.05%), 827 (2.64%), 185H (2.41%), 809C (2.33%), 869 (2.21%), 952 (2.16%), 312 (2.05%), 433 (1.89%), 405 (1.89%).</canvas>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Data pipeline</h2>
+    <div class="pipe">
+      <div class="stage"><div class="n">161 GB</div><div class="l">Raw GTFS-realtime protobuf via KoDa</div></div>
+      <div class="arrow">→</div>
+      <div class="stage"><div class="n">612 MB</div><div class="l">Decoded, deduplicated, filtered</div></div>
+      <div class="arrow">→</div>
+      <div class="stage"><div class="n">BigQuery</div><div class="l">8.8M rows loaded via GCS</div></div>
+      <div class="arrow">→</div>
+      <div class="stage"><div class="n">dbt</div><div class="l">Silver &amp; gold models</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="method">
+      <h3>Method &amp; limitations</h3>
+      <p>SL publishes realtime data as GTFS protobuf through KoDa. We decoded 34 monthly snapshot days spanning 2023–2026, filtered from 161GB to 612MB, loaded to BigQuery and modelled the transformations in dbt.</p>
+      <div class="row"><span class="lab">Trip-to-line matching</span><span class="val">Date-specific static schedules. SL reassigns trip IDs across schedule versions, so a naive join covers only 8.7% of records; date-matched joins reach 79%.</span></div>
+      <div class="row"><span class="lab">Artifact filtering</span><span class="val">Days with implausible failure rates, holiday timetables, and planned engineering work are excluded as schedule mismatches, not delays.</span></div>
+      <div class="row"><span class="lab">Sample scope</span><span class="val">34 discrete days. Supports line- and mode-level comparison; does not support seasonal or time-of-day trend claims.</span></div>
+      <div class="row"><span class="lab">Weather</span><span class="val">Cold weather shows a small measurable effect on buses only (0.44% vs 0.36% when freezing), on a thin sample of freezing dates.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    Built with BigQuery, dbt, and KoDa open transit data. Analysis and pipeline by Oscar Alawi.
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function(){
+  var ink='#74756f', sec='#a8a9a4', grid='#2a2c31';
+  Chart.defaults.font.family='-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif';
+
+  new Chart(document.getElementById('modeChart'),{
+    type:'bar',
+    data:{labels:['Metro','Light rail','Bus','Pendeltåg','Ferry'],
+      datasets:[{data:[0.004,0.151,0.416,0.651,0.906],
+        backgroundColor:['#3987e5','#5d8fc9','#eb6834','#d95926','#a32d2d'],
+        borderRadius:5,maxBarThickness:52}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y+'% of trips fail'}}}},
+      scales:{y:{beginAtZero:true,ticks:{color:ink,callback:function(v){return v+'%'}},grid:{color:grid}},
+        x:{ticks:{color:sec,font:{size:13}},grid:{display:false}}}}
+  });
+
+  new Chart(document.getElementById('lineChart'),{
+    type:'bar',
+    data:{labels:['955','908','827','185H','809C','869','952','312','433','405'],
+      datasets:[{data:[7.5,7.05,2.64,2.41,2.33,2.21,2.16,2.05,1.89,1.89],
+        backgroundColor:'#eb6834',borderRadius:5,maxBarThickness:24}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.x+'% fail rate'}}}},
+      scales:{x:{beginAtZero:true,ticks:{color:ink,callback:function(v){return v+'%'}},grid:{color:grid}},
+        y:{ticks:{color:sec,font:{size:13}},grid:{display:false}}}}
+  });
+})();
+</script>
+</body>
+</html>

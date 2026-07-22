@@ -1,0 +1,11 @@
+*.json
+*.7z
+*.pb
+*.csv
+!app/data/*.csv
+logs/
+target/
+dbt_packages/
+__pycache__/
+.DS_Store
+.user.yml
