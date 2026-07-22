@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SL Transit Reliability — Stockholm</title>
+<title>SL Transit Reliability - Stockholm</title>
 <style>
   :root{
     --bg:#0f1012; --surface:#17181b; --surface2:#1e2024; --border:#2a2c31;
@@ -64,8 +64,8 @@
 
   <div class="lede">
     <span class="tag">Expected chaos, found reliability</span>
-    <p>We built this expecting to find a transit system under strain — chronic delays, bad lines, a daily rush-hour breakdown. The data showed the opposite. SL runs on time. Across every mode, fewer than 1% of trips arrive more than 10 minutes late, and on the metro it is effectively zero.</p>
-    <p>The failures that do exist aren't systemic. They cluster on specific dates and specific hours — a few hours on a handful of days — tied to planned engineering work or one-off incidents, not to any weakness you could optimize away. At 99.5%+ punctuality, there is no structural problem to fix. This dashboard shows what the data actually says.</p>
+    <p>I built this expecting to find a transit system under strain - chronic delays, bad lines, a daily rush-hour breakdown. The data showed the opposite. SL runs on time. Across every mode, fewer than 1% of trips arrive more than 10 minutes late, and on the metro it is effectively zero.</p>
+    <p>The failures that do exist aren't systemic. They cluster on specific dates and specific hours - a few hours on a handful of days - tied to planned engineering work or one-off incidents, not to any weakness you could optimize away. At 99.5%+ punctuality, there is no structural problem to fix. This dashboard shows what the data actually says.</p>
   </div>
 
   <section>
@@ -90,7 +90,7 @@
 
   <section>
     <div class="charthead">Least reliable lines</div>
-    <div class="chartsub">Highest failure rate among lines with at least 1,000 trips — all are buses</div>
+    <div class="chartsub">Highest failure rate among lines with at least 1,000 trips - all are buses</div>
     <div class="chartbox">
       <div class="canvaswrap" style="height:380px">
         <canvas id="lineChart" role="img" aria-label="Least reliable bus lines by failure rate, line 955 highest at 7.5 percent">Lines 955 (7.5%), 908 (7.05%), 827 (2.64%), 185H (2.41%), 809C (2.33%), 869 (2.21%), 952 (2.16%), 312 (2.05%), 433 (1.89%), 405 (1.89%).</canvas>
@@ -114,7 +114,7 @@
   <section>
     <div class="method">
       <h3>Method &amp; limitations</h3>
-      <p>SL publishes realtime data as GTFS protobuf through KoDa. We decoded 34 monthly snapshot days spanning 2023–2026, filtered from 161GB to 612MB, loaded to BigQuery and modelled the transformations in dbt.</p>
+      <p>SL publishes realtime data as GTFS protobuf through KoDa. I decoded 34 monthly snapshot days spanning 2023–2026, filtered from 161GB to 612MB, loaded to BigQuery and modelled the transformations in dbt.</p>
       <div class="row"><span class="lab">Trip-to-line matching</span><span class="val">Date-specific static schedules. SL reassigns trip IDs across schedule versions, so a naive join covers only 8.7% of records; date-matched joins reach 79%.</span></div>
       <div class="row"><span class="lab">Artifact filtering</span><span class="val">Days with implausible failure rates, holiday timetables, and planned engineering work are excluded as schedule mismatches, not delays.</span></div>
       <div class="row"><span class="lab">Sample scope</span><span class="val">34 discrete days. Supports line- and mode-level comparison; does not support seasonal or time-of-day trend claims.</span></div>
